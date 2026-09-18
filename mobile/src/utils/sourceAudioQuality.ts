@@ -56,7 +56,7 @@ export function getSourceAudioQuality(
   if (typeof dsdRate === "number" && dsdRate > 0) {
     const label =
       DSD_RATE_LABELS[dsdRate] ||
-      `DSD${dsdRate} · ${parseFloat(((dsdRate * 44.1) / 1000).toFixed(1))} MHz`;
+      `DSD${dsdRate} · ${(parseFloat(((dsdRate * 44.1) / 1000).toFixed(1)))} MHz`;
 
     return {
       kind: "dsd",
