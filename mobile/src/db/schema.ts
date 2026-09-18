@@ -102,6 +102,8 @@ export const tracks = sqliteTable("tracks", {
   format: text(), // Currently the mimetype of the file
   bitrate: integer(),
   sampleRate: integer(),
+  bitDepth: integer(),
+  dsdRate: integer(),
   size: integer().notNull(),
   uri: text().notNull(),
   modificationTime: integer().notNull(),
