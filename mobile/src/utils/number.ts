@@ -1,9 +1,10 @@
 // Copyright (C) 2024 - present, MissingCore
 // SPDX-License-Identifier: AGPL-3.0-only
 
-/** Convert bit rate to kbit/s. */
+/** Convert bit rate in bits per second to human-readable kbps. */
 export function abbreviateBitRate(rate: number) {
-  return `${(rate / 1000).toFixed(2).replace(".00", "")} kbit/s`;
+  const kbps = Math.round(rate / 1000);
+  return `${kbps.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} kbps`;
 }
 
 /** Abbreviate size in bytes. */
