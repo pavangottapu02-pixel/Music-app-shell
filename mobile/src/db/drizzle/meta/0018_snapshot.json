@@ -779,20 +779,6 @@
           "notNull": false,
           "autoincrement": false
         },
-        "bit_depth": {
-          "name": "bit_depth",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
-        "dsd_rate": {
-          "name": "dsd_rate",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false,
-          "autoincrement": false
-        },
         "size": {
           "name": "size",
           "type": "integer",
@@ -887,6 +873,20 @@
             "as": "(rtrim(\"uri\", replace(\"uri\", '/', '')))",
             "type": "virtual"
           }
+        },
+        "bit_depth": {
+          "name": "bit_depth",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "dsd_rate": {
+          "name": "dsd_rate",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
         }
       },
       "indexes": {},
