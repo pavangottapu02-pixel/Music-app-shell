@@ -38,6 +38,8 @@ import { StyledText } from "~/components/Typography/StyledText";
 import { FavoritesPlaylistKey } from "~/modules/media/constants";
 import { ArtistsLink } from "~/modules/media/components/ArtistsLink";
 import { MediaImage } from "~/modules/media/components/MediaImage";
+import { SourceQualityBadge } from "~/modules/media/components/SourceQualityBadge";
+import { getSourceAudioQuality } from "~/utils/sourceAudioQuality";
 
 const GLOBAL_SHEET_KEY = "TrackSheet";
 
@@ -116,6 +118,12 @@ function TrackIntro({ data }: { data: Track }) {
 
 //#region Metadata
 function TrackMetadata({ data }: { data: Track }) {
+  const quality = getSourceAudioQuality({
+    bitDepth: data.bitDepth,
+    sampleRate: data.sampleRate,
+    dsdRate: data.dsdRate,
+  });
+
   return (
     <View className="gap-4 rounded-md bg-surfaceContainerLowest p-4">
       <Marquee
@@ -126,7 +134,7 @@ function TrackMetadata({ data }: { data: Track }) {
           {data.bitrate !== null ? abbreviateBitRate(data.bitrate) : "—"}
         </StyledText>
         <StyledText className="text-xxs/tight">
-          {data.sampleRate !== null ? `${data.sampleRate} Hz` : "—"}
+          {quality.label !== null ? quality.label : "—"}
         </StyledText>
         <StyledText className="text-xxs/tight">
           {abbreviateSize(data.size)}
@@ -143,7 +151,8 @@ function TrackMetadata({ data }: { data: Track }) {
         <Marquee color="surfaceContainerLowest">
           <StyledText className="text-xxs/tight">{data.uri}</StyledText>
         </Marquee>
-        <View className="flex-row gap-2">
+        <View className="flex-row items-center gap-2">
+          {quality.badge ? <SourceQualityBadge type={quality.badge} /> : null}
           {data.format ? <Badge>{data.format.toUpperCase()}</Badge> : null}
           <Badge icon="schedule">{formatSeconds(data.duration)}</Badge>
         </View>
